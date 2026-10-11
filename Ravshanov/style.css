@@ -1,0 +1,684 @@
+/* ==========================
+   POKIZA — MAGICAL ROMANCE
+   ========================== */
+
+:root {
+  --pink: #ff7eb8;
+  --purple: #b78aff;
+  --white: #fff5fc;
+  --muted: #d9c9eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #10091f;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 50% 40%,
+      #39204f 0%,
+      #20102f 35%,
+      #10091f 72%,
+      #080611 100%);
+  font-family: "Cormorant Garamond", serif;
+}
+
+button {
+  font: inherit;
+}
+
+#sky {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.aurora {
+  position: fixed;
+  width: 55vw;
+  height: 55vw;
+  min-width: 280px;
+  min-height: 280px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 0;
+  animation: auroraFloat 13s ease-in-out infinite alternate;
+}
+
+.aurora-one {
+  top: -20%;
+  left: -20%;
+  background: #e34dff;
+}
+
+.aurora-two {
+  right: -20%;
+  bottom: -20%;
+  background: #514dff;
+  animation-delay: -6s;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 25%,
+    rgba(4, 2, 14, 0.43) 100%
+  );
+}
+
+.scene {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 36px 20px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  isolation: isolate;
+}
+
+.top-label {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #d6b8f2;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  animation: fadeIn 1.5s ease both;
+}
+
+.tiny-star {
+  color: #ffb8e0;
+  font-size: 15px;
+  animation: twinkle 2s infinite alternate;
+}
+
+.subtitle {
+  margin-top: 18px;
+  color: #cbb7de;
+  font-size: clamp(16px, 2vw, 20px);
+  font-style: italic;
+  letter-spacing: 1px;
+  animation: fadeIn 2s ease both;
+}
+
+/* Yurak sahnasi */
+
+.heart-stage {
+  position: relative;
+  width: 270px;
+  height: 240px;
+  display: grid;
+  place-items: center;
+  margin: 9px 0 -3px;
+  flex-shrink: 0;
+}
+
+.heart-halo {
+  position: absolute;
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  background: #ed67ff;
+  filter: blur(70px);
+  opacity: 0.35;
+  animation: haloPulse 3s ease-in-out infinite;
+}
+
+.main-heart {
+  position: relative;
+  z-index: 2;
+  width: 175px;
+  overflow: visible;
+  animation: heartBeat 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px #e46bff);
+  /* Bosish imkonini berish */
+  pointer-events: auto;
+}
+
+.heart-fill {
+  animation: fillPulse 3s ease-in-out infinite alternate;
+}
+
+.heart-outline {
+  stroke-dasharray: 520;
+  stroke-dashoffset: 0;
+  animation:
+    heartDraw 3s ease-out both,
+    outlineGlow 3s ease-in-out infinite alternate;
+}
+
+.heart-ring {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border: 1px solid rgba(224, 160, 255, 0.18);
+  border-radius: 50%;
+  pointer-events: none; /* Ular orqali bosish imkoni bo'lsin */
+}
+
+.ring-one {
+  animation: ringPulse 4s ease-in-out infinite;
+}
+
+.ring-two {
+  width: 235px;
+  height: 235px;
+  border-color: rgba(255, 139, 205, 0.1);
+  animation: ringPulse 4s ease-in-out infinite 2s;
+}
+
+.heart-spark {
+  position: absolute;
+  z-index: 3;
+  color: #ffd8fa;
+  text-shadow: 0 0 12px #ff8cda;
+  animation: sparkle 2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.spark-one {
+  top: 30px;
+  left: 40px;
+  font-size: 23px;
+}
+
+.spark-two {
+  top: 65px;
+  right: 20px;
+  font-size: 27px;
+  animation-delay: -1s;
+}
+
+.spark-three {
+  bottom: 27px;
+  right: 47px;
+  font-size: 18px;
+  animation-delay: -0.5s;
+}
+
+.spark-four {
+  bottom: 52px;
+  left: 22px;
+  font-size: 19px;
+  animation-delay: -1.5s;
+}
+
+/* Shalola ismi */
+
+.name-section {
+  animation: nameReveal 1.8s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.for-you {
+  margin-top: 2px;
+  color: #d8b6ee;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.name {
+  margin-top: 5px;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(76px, 12vw, 112px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  background: linear-gradient(
+    115deg,
+    #fff3fc,
+    #ffacd9,
+    #d4aaff,
+    #ffffff,
+    #ffacd9
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: nameShine 6s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(255, 119, 202, .3));
+}
+
+.name-dot {
+  color: #ffc0e8;
+}
+
+.name-underline {
+  width: 85px;
+  height: 1px;
+  margin: 3px auto 18px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e6a6ff,
+    #ffacd9,
+    transparent
+  );
+  box-shadow: 0 0 12px #d58aff;
+}
+
+.message {
+  max-width: 390px;
+  margin: 0 auto;
+  color: #e6d8f0;
+  font-size: clamp(18px, 3vw, 22px);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.little-note {
+  margin-top: 13px;
+  color: #bd9dcf;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.little-note span {
+  color: #ff93cf;
+  padding: 0 4px;
+}
+
+/* Sehrli tugma */
+
+.magic-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 29px;
+  min-width: 195px;
+  padding: 14px 22px;
+  color: #fff3fd;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(226, 170, 255, 0.48);
+  border-radius: 40px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow:
+    0 0 20px rgba(202, 109, 255, 0.1),
+    inset 0 0 15px rgba(255, 255, 255, 0.025);
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.magic-button:hover {
+  transform: translateY(-3px);
+  background: rgba(199, 117, 255, 0.15);
+  box-shadow: 0 0 32px rgba(219, 128, 255, 0.28);
+}
+
+.magic-button:active {
+  transform: scale(.97);
+}
+
+.button-star {
+  color: #ffb4e2;
+  font-size: 18px;
+}
+
+.button-arrow {
+  color: #ffb4e2;
+  font-size: 16px;
+  transition: transform .3s ease;
+}
+
+.magic-button:hover .button-arrow {
+  transform: translate(3px, -3px);
+}
+
+.bottom-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 34px;
+  color: #987baa;
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+}
+
+.bottom-line {
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #987baa);
+}
+
+.bottom-line:last-child {
+  transform: rotate(180deg);
+}
+
+.bottom-heart {
+  color: #ff85c8;
+  animation: twinkle 1.5s infinite alternate;
+}
+
+/* Sehrli xabar oynasi */
+
+.love-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(7, 3, 17, .78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s, visibility .4s;
+}
+
+.love-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  width: min(100%, 390px);
+  padding: 38px 27px;
+  text-align: center;
+  border: 1px solid rgba(230, 173, 255, .35);
+  border-radius: 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(65, 35, 87, .96),
+    rgba(23, 12, 39, .98)
+  );
+  box-shadow: 0 0 70px rgba(196, 100, 255, .2);
+  transform: translateY(20px) scale(.95);
+  transition: transform .4s cubic-bezier(.2, .8, .2, 1);
+}
+
+.love-modal.show .modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-heart {
+  font-family: "Great Vibes", cursive;
+  font-size: 65px;
+  color: #ff92d0;
+  text-shadow: 0 0 25px #ff70c5;
+  animation: heartBeat 2s infinite;
+}
+
+.modal-eyebrow {
+  margin: 10px 0;
+  color: #c9a9e7;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 4px;
+}
+
+.modal-card h2 {
+  margin: 10px 0 15px;
+  color: #ffe1f3;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.modal-card p {
+  color: #e0cde9;
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.close-button {
+  margin-top: 23px;
+  padding: 12px 25px;
+  border: 1px solid rgba(255, 176, 221, .5);
+  border-radius: 30px;
+  color: #ffe7f7;
+  background: rgba(255, 255, 255, .06);
+  cursor: pointer;
+  transition: background .3s;
+}
+
+.close-button:hover {
+  background: rgba(255, 133, 204, .2);
+}
+
+.music-hint {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 8px;
+  color: rgba(223, 194, 239, .52);
+  text-align: center;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+/* Sichqoncha va sensorli ekran effektlari */
+
+.floating-heart {
+  position: fixed;
+  z-index: 5;
+  pointer-events: none;
+  color: var(--heart-color, #ff8bcf);
+  font-size: var(--heart-size, 18px);
+  text-shadow: 0 0 15px currentColor;
+  animation: floatAway var(--duration, 3s) ease-out forwards;
+  /* Markazlashtirish */
+  transform: translate(-50%, -50%); 
+}
+
+.cursor-spark {
+  position: fixed;
+  z-index: 6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffd9f3;
+  box-shadow: 0 0 12px #ff89d1, 0 0 25px #c68bff;
+  pointer-events: none;
+  animation: particleFade .8s ease-out forwards;
+  transform: translate(-50%, -50%);
+}
+
+/* Animatsiyalar */
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.055); }
+}
+
+@keyframes haloPulse {
+  0%, 100% { opacity: .22; transform: scale(.85); }
+  50% { opacity: .5; transform: scale(1.15); }
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(.94); opacity: .35; }
+  50% { transform: scale(1.07); opacity: .9; }
+}
+
+@keyframes sparkle {
+  from { opacity: .35; transform: scale(.75) rotate(0); }
+  to { opacity: 1; transform: scale(1.15) rotate(25deg); }
+}
+
+@keyframes twinkle {
+  from { opacity: .4; }
+  to { opacity: 1; }
+}
+
+@keyframes fillPulse {
+  from { fill-opacity: .10; }
+  to { fill-opacity: .30; }
+}
+
+@keyframes outlineGlow {
+  from { opacity: .75; }
+  to { opacity: 1; }
+}
+
+@keyframes heartDraw {
+  from { stroke-dashoffset: 520; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes nameReveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nameShine {
+  from { background-position: 0% center; }
+  to { background-position: 250% center; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes auroraFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(8vw, 5vh) scale(1.2); }
+}
+
+@keyframes floatAway {
+  0% {
+    opacity: 0;
+    /* Dastlabki holat: markazda va kichik */
+    transform: translate(-50%, -50%) scale(.2) rotate(0deg);
+  }
+  15% { opacity: 1; }
+  100% {
+    opacity: 0;
+    /* Yakuniy holat: belgilangan drift va balandlikka ko'tarilish, aylanish, kattalashish */
+    transform:
+      translate(calc(-50% + var(--drift, 30px)), var(--up-dist, -180px))
+      scale(1.2) rotate(var(--rot, 20deg)); 
+  }
+}
+
+@keyframes particleFade {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0) translateY(-12px); }
+}
+
+/* Telefon ekranlari */
+
+@media (max-width: 600px) {
+  .scene {
+    padding: 30px 17px 35px;
+  }
+
+  .top-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .heart-stage {
+    width: 250px;
+    height: 220px;
+    margin-top: 15px;
+  }
+
+  .main-heart {
+    width: 155px;
+  }
+
+  .heart-ring {
+    width: 190px;
+    height: 190px;
+  }
+
+  .ring-two {
+    width: 215px;
+    height: 215px;
+  }
+
+  .message {
+    max-width: 340px;
+  }
+
+  .magic-button {
+    margin-top: 25px;
+  }
+
+  .bottom-caption {
+    margin-top: 29px;
+  }
+}
+
+@media (max-height: 700px) {
+  .scene {
+    padding-top: 22px;
+    padding-bottom: 28px;
+  }
+
+  .heart-stage {
+    height: 190px;
+    margin-top: 4px;
+  }
+
+  .main-heart {
+    width: 135px;
+  }
+
+  .heart-ring {
+    width: 170px;
+    height: 170px;
+  }
+
+  .ring-two {
+    width: 190px;
+    height: 190px;
+  }
+
+  .magic-button {
+    margin-top: 18px;
+  }
+
+  .bottom-caption {
+    margin-top: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

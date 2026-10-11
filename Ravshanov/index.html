@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10091f">
+  <meta name="description" content="Shalola uchun yaratilgan sehrli va romantik olam">
+  <title>Pokiza ❤️ Sehrli olam</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Jonli animatsiyalar uchun fon -->
+  <canvas id="sky"></canvas>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="vignette"></div>
+
+  <main class="scene">
+
+    <div class="top-label">
+      <span class="tiny-star">✦</span>
+      A LITTLE WORLD OF MAGIC
+      <span class="tiny-star">✦</span>
+    </div>
+
+    <div class="subtitle">Bu go‘zal olam faqat sen uchun</div>
+
+    <!-- Markazdagi animatsiyali yurak -->
+    <div class="heart-stage">
+      <div class="heart-halo"></div>
+      <div class="heart-ring ring-one"></div>
+      <div class="heart-ring ring-two"></div>
+
+      <!-- ID qo'shildi: id="mainHeart" -->
+      <svg class="main-heart" id="mainHeart" viewBox="0 0 200 185"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-label="Yorqin rang-barang yurak" style="cursor: pointer;">
+        <defs>
+          <linearGradient id="heartGradient"
+              x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff4fa3"/>
+            <stop offset="30%" stop-color="#c77dff"/>
+            <stop offset="60%" stop-color="#7c83ff"/>
+            <stop offset="82%" stop-color="#ff72bd"/>
+            <stop offset="100%" stop-color="#ffcfef"/>
+            <animate attributeName="x1"
+                values="0%;100%;0%" dur="5s" repeatCount="indefinite"/>
+          </linearGradient>
+
+          <filter id="heartGlow" x="-100%" y="-100%"
+                  width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <path class="heart-fill"
+          d="M100 165 C84 148 18 105 18 59
+             C18 13 74 4 100 45
+             C126 4 182 13 182 59
+             C182 105 116 148 100 165Z"
+          fill="url(#heartGradient)"
+          fill-opacity="0.17"/>
+
+        <path class="heart-outline"
+          d="M100 165 C84 148 18 105 18 59
+             C18 13 74 4 100 45
+             C126 4 182 13 182 59
+             C182 105 116 148 100 165Z"
+          fill="none"
+          stroke="url(#heartGradient)"
+          stroke-width="3"
+          stroke-linecap="round"
+          filter="url(#heartGlow)"/>
+
+        <path d="M39 46 Q43 26 63 28"
+          fill="none" stroke="#ffffff"
+          stroke-opacity=".8" stroke-width="2"
+          stroke-linecap="round"/>
+      </svg>
+
+      <div class="heart-spark spark-one">✦</div>
+      <div class="heart-spark spark-two">✧</div>
+      <div class="heart-spark spark-three">✦</div>
+      <div class="heart-spark spark-four">✧</div>
+    </div>
+
+    <section class="name-section">
+      <div class="for-you">especially for you</div>
+
+      <h1 class="name">Pokiza<span class="name-dot">.</span></h1>
+
+      <div class="name-underline"></div>
+
+      <p class="message">
+        Ba'zi insonlar hayotga shunchaki kelmaydi...
+        <br>
+        ular uni yanada go'zal qilish uchun keladi.
+      </p>
+
+      <p class="little-note">
+        <span>♡</span> Sen ham ana shunday insonlardan birisan <span>♡</span>
+      </p>
+    </section>
+
+    <button class="magic-button" id="magicButton">
+      <span class="button-star">✧</span>
+      <span>Sehrni his et</span>
+      <span class="button-arrow">↗</span>
+    </button>
+
+    <div class="bottom-caption">
+      <span class="bottom-line"></span>
+      MADE WITH LOVE
+      <span class="bottom-heart">♥</span>
+      <span class="bottom-line"></span>
+    </div>
+
+  </main>
+
+  <!-- Tugma bosilganda chiqadigan xabar -->
+  <div class="love-modal" id="loveModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-heart">♡</div>
+      <div class="modal-eyebrow">A SPECIAL MESSAGE</div>
+      <h2>Pokiza, sen ajoyibsan!</h2>
+      <p>
+        Dunyo millionlab ranglardan iborat,
+        lekin ba'zi insonlar uning o'ziga alohida
+        bir rang qo'shadi. Sen ham ana shunday
+        go'zal rangsan. ✨
+      </p>
+      <button id="closeModal" class="close-button">
+        ♡ Rahmat ♡
+      </button>
+    </div>
+  </div>
+
+  <div class="music-hint" id="musicHint">
+    ✨ Ekranga yoki yurakka bosib, sehrli zarralarni uyg'ot
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
